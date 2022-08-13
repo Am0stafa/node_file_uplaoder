@@ -48,9 +48,8 @@
             // we need to bind or append the file data that we selected to the formData as the express file upload package expects to get that in form data
             // we want to loop over the files and add them
             Object.keys(myFiles).forEach(key => {
-                //Get the node name of the first child node:
                 formData.append(myFiles.item(key).name, myFiles.item(key))
-            })
+            })          
 
             const response = await fetch('http://localhost:3500/upload', {
                 method: 'POST',
