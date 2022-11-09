@@ -16,8 +16,8 @@ app.get("/", (req, res) => {
 
 //^ 1) Automatically creates the directory path specified in .mv(filePathName) to be able to save it locally along with adding the file to req.files
 //^ 2) It is going to see if we have supplied the files or not
-//^ 3) It is going to check if any of file has bigger size than we want
-//^ 4) It will receive a parameter of the allowed file extensions that we want
+//^ 3) It will receive a parameter of the allowed file extensions that we want
+//^ 4) It is going to check if any of file has bigger size than we want
 //^ 5) call the controller which saved each file to the server
 
 app.post("/upload", fileUpload({ createParentPath: true }) , filesPayloadExists,
