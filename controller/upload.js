@@ -7,7 +7,11 @@ const upload = (req, res) => {
     
     Object.keys(files).forEach(key => {
         //! create the path for each file
-        const filepath = path.join(__dirname, '..','files', files[key].name)
+        
+        const random = Math.random().toString(36).slice(2,10) 
+        const newName = `${Date.now()}-${random}-${files[key].name}`
+        
+        const filepath = path.join(__dirname, '..','files', newName)
         //! add it to the server
         files[key].mv(filepath, (err) => {
             if (err) return res.status(500).json({ status: "error", message: err })
@@ -17,4 +21,4 @@ const upload = (req, res) => {
     return res.json({ status: 'success', message: Object.keys(files).toString() })
 
 }
-module.exports =upload
+module.exports = upload

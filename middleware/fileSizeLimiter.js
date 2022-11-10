@@ -14,12 +14,11 @@ const fileSizeLimiter = (req, res,next) => {
     
     if (fileOverLimit.length) {
         const properVerb = fileOverLimit.length > 1 ? 'is' : 'are'
-        const sentence = `Upload failed. ${fileOverLimit.toString()} ${properVerb} over the file size limit of ${MB} MB.`.replaceAll(",", ", ");
-        const message = filesOverLimit.length < 3
-        ? sentence.replace(",", " and")
-        : sentence.replace(/,(?=[^,]*$)/, " and");
+        // const sentence = `Upload failed. ${fileOverLimit.toString()} ${properVerb} over the file size limit of ${MB} MB.`.replaceAll(",", ", ");
+        const sentence = `Upload failed.`;
+        // const message = filesOverLimit.length < 3 ? sentence.replace(",", " and"): sentence.replace(/,(?=[^,]*$)/, " and");
 
-        res.status(413).json({"status":"error",message})
+        res.status(413).json({"status":"error",sentence})
     
     }
     
