@@ -5,12 +5,12 @@ const fileExtLimiter = (...allowedExtArray) => {
     return (req, res, next) => {
         const files = req.files
         const fileExtensions = []
-        const mimetypes = []
+        const contentType = []
         //! firstly we need to push to an array the extensions of each file from the name of the file by using the path.extname
-      
+        
         Object.keys(files).forEach(key => {
-            fileExtensions.push(path.extname(files[key].name))
-            mimetypes.push(files[key].mimetype.split('/')[0])
+            fileExtensions.push(path.extname(files[key].name).toLocaleLowerCase())
+            contentType.push(files[key].mimetype.split('/')[0])
         })
         
         //! all the files must be in an accepted formate if at least one is not in the allowed formate reject it
@@ -18,7 +18,7 @@ const fileExtLimiter = (...allowedExtArray) => {
        
         const allowedExt = fileExtensions.every(ext => allowedExtArray.includes(ext))
         
-        const allowedMime = mimetypes.every(ext => {return ext === 'image'})
+        const allowedMime = contentType.every(ext => {return ext === 'image'})
         
         if(!allowedExt || !allowedMime){
             // const message = `Upload failed. Only ${allowedExtArray.toString()} files allowed.`
