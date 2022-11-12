@@ -3,12 +3,13 @@ const path = require('path');
 const upload = (req, res) => {
     const files = req.files
 
-    //! what we want to do is loop over each file and added it to the server
     
+
+    //! what we want to do is loop over each file and added it to the server
     Object.keys(files).forEach(key => {
         //! create the path for each file
         
-        const random = Math.random().toString(36).slice(2,15) 
+        const random = Math.random().toString(36).slice(2,22) 
         const newName = `${Date.now()}-${random}${path.extname(files[key].name).toLocaleLowerCase()}`
 
         const filepath = path.join(__dirname, '..','files', newName)
